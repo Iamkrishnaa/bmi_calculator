@@ -1,3 +1,4 @@
+//Class of BMI
 class Bmi {
   int height;
   int weight;

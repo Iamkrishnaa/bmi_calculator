@@ -4,7 +4,7 @@ Color kInactiveColor = const Color(0xff111328);
 Color kActiveColor = const Color(0xff1d1e33);
 
 TextStyle kTitleStyle = const TextStyle(
-  fontSize: 20,
+  fontSize: 19,
   color: Color(0xff8d8e98),
 );
 
