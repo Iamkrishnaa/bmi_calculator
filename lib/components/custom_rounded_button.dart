@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// custom rounded button for increasing or decreasing value
 class CustomRoundButton extends StatelessWidget {
   final IconData icon;
   final VoidCallback onTap;

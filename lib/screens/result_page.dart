@@ -5,7 +5,8 @@ import 'package:bmi/models/bmi.dart';
 import 'package:flutter/material.dart';
 
 class ResultPage extends StatefulWidget {
-  final Bmi bmi;
+  /// passing bmi via constructor
+  final BMI bmi;
 
   const ResultPage({Key? key, required this.bmi}) : super(key: key);
 
@@ -14,17 +15,20 @@ class ResultPage extends StatefulWidget {
 }
 
 class _ResultPageState extends State<ResultPage> {
+  /// initial bmi value
   String bmiData = "NA";
+  /// initial result value
   String result = "NA";
-  BMIController? controller;
+
+  late BMIController controller;
 
   @override
   void initState() {
     super.initState();
     setState(() {
       controller = BMIController(bmi: widget.bmi);
-      bmiData = controller!.getBMI();
-      result = controller!.getResult();
+      bmiData = controller.getBMI();
+      result = controller.getResult();
     });
   }
 

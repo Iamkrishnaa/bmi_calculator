@@ -7,11 +7,13 @@ import 'package:bmi/screens/result_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+/// enum for switching either male or female
 enum Gender {
   male,
   female,
 }
 
+/// Home page widget
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -21,8 +23,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   Gender? selectedGender;
+
+  /// initial height value
   int height = 150;
+
+  /// initial weight value
   int weight = 60;
+
+  /// initial age value
   int age = 20;
 
   @override
@@ -210,18 +218,22 @@ class _HomePageState extends State<HomePage> {
                               CustomRoundButton(
                                 icon: FontAwesomeIcons.minus,
                                 onTap: () {
-                                  setState(() {
-                                    age--;
-                                  });
+                                  setState(
+                                    () {
+                                      age--;
+                                    },
+                                  );
                                 },
                               ),
                               const SizedBox(width: 10),
                               CustomRoundButton(
                                 icon: FontAwesomeIcons.plus,
                                 onTap: () {
-                                  setState(() {
-                                    age++;
-                                  });
+                                  setState(
+                                    () {
+                                      age++;
+                                    },
+                                  );
                                 },
                               ),
                             ],
@@ -239,13 +251,17 @@ class _HomePageState extends State<HomePage> {
                 color: kButtonColor,
                 child: InkWell(
                   onTap: () {
-                    Bmi bmi = Bmi(height: height, weight: weight, age: age);
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return ResultPage(
-                        bmi: bmi,
-                      );
-                    }));
+                    BMI bmi = BMI(height: height, weight: weight, age: age);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return ResultPage(
+                            bmi: bmi,
+                          );
+                        },
+                      ),
+                    );
                   },
                   splashColor: Colors.red,
                   child: Center(
