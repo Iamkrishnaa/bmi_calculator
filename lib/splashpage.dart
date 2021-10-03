@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+/// splash screen for the app
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
@@ -10,12 +11,20 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  /// waits for certain duration and navigates to home screen.
+  void _splashdelay() {
+    Timer(
+      const Duration(seconds: 3),
+      () {
+        Navigator.pushReplacementNamed(context, "/home");
+      },
+    );
+  }
+
   @override
   void initState() {
+    _splashdelay();
     super.initState();
-    Timer(const Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, "/home");
-    });
   }
 
   @override
