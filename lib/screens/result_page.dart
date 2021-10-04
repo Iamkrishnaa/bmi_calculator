@@ -4,6 +4,7 @@ import 'package:bmi/controllers/bmi_controller.dart';
 import 'package:bmi/models/bmi.dart';
 import 'package:flutter/material.dart';
 
+// statefull widget--enables to change state when event is tiggered
 class ResultPage extends StatefulWidget {
   /// passing bmi via constructor
   final BMI bmi;
