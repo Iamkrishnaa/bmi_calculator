@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-/// splash screen for the app
+/// splash screen for the project
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
@@ -14,8 +14,10 @@ class _SplashScreenState extends State<SplashScreen> {
   /// waits for certain duration and navigates to home screen.
   void _splashdelay() {
     Timer(
+      //splash screen timer
       const Duration(seconds: 3),
       () {
+        //loads home screen and splash screen do not appear 
         Navigator.pushReplacementNamed(context, "/home");
       },
     );
