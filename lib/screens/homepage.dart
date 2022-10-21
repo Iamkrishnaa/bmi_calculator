@@ -5,6 +5,7 @@ import 'package:bmi/const.dart';
 import 'package:bmi/models/bmi.dart';
 import 'package:bmi/screens/result_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 /// enum for switching either male or female
@@ -33,9 +34,23 @@ class _HomePageState extends State<HomePage> {
   /// initial age value
   int age = 20;
 
+  TextEditingController heightController = TextEditingController();
+  TextEditingController weightController = TextEditingController();
+  TextEditingController ageController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    heightController.text = height.toString();
+    weightController.text = weight.toString();
+    ageController.text = age.toString();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text("BMI Calculator"),
         centerTitle: true,
@@ -104,9 +119,27 @@ class _HomePageState extends State<HomePage> {
                       textBaseline: TextBaseline.alphabetic,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          height.toString(),
-                          style: kNumberStyle,
+
+                        SizedBox(
+                          width:75,
+                          child: TextFormField(
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
+                            controller: heightController,
+                            style: kNumberStyle,
+                            decoration: fieldDecorator,
+                            onChanged: (value){
+                              setState((){
+                                int temp = int.parse(value);
+                                if(temp>=100&&temp<=300)
+                                {
+                                  height = temp;
+                                }
+                              });
+                            },
+                          ),
                         ),
                         Text(
                           "cm",
@@ -134,6 +167,7 @@ class _HomePageState extends State<HomePage> {
                         onChanged: (value) {
                           setState(() {
                             height = value.toInt();
+                            heightController.text = value.toInt().toString();
                           });
                         },
                         inactiveColor: Colors.grey,
@@ -161,9 +195,23 @@ class _HomePageState extends State<HomePage> {
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              weight.toString(),
-                              style: kNumberStyle,
+                            child: SizedBox(
+                              width: 75,
+                              child: TextFormField(
+                                keyboardType: TextInputType.number,
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.digitsOnly
+                                ],
+                                textAlign: TextAlign.center,
+                                controller: weightController,
+                                style: kNumberStyle,
+                                decoration: fieldDecorator,
+                                onChanged: (value){
+                                  setState((){
+                                    weight = int.parse(value);
+                                  });
+                                },
+                              ),
                             ),
                           ),
                           Row(
@@ -174,6 +222,7 @@ class _HomePageState extends State<HomePage> {
                                 onTap: () {
                                   setState(() {
                                     weight--;
+                                    weightController.text = weight.toString();
                                   });
                                 },
                               ),
@@ -183,6 +232,7 @@ class _HomePageState extends State<HomePage> {
                                 onTap: () {
                                   setState(() {
                                     weight++;
+                                    weightController.text = weight.toString();
                                   });
                                 },
                               ),
@@ -207,9 +257,22 @@ class _HomePageState extends State<HomePage> {
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              age.toString(),
-                              style: kNumberStyle,
+                            child: SizedBox(
+                              width: 75,
+                              child: TextFormField(
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.digitsOnly
+                                ],
+                                textAlign: TextAlign.center,
+                                controller: ageController,
+                                style: kNumberStyle,
+                                decoration: fieldDecorator,
+                                onChanged: (value){
+                                  setState((){
+                                    age = int.parse(value);
+                                  });
+                                },
+                              ),
                             ),
                           ),
                           Row(
@@ -221,6 +284,7 @@ class _HomePageState extends State<HomePage> {
                                   setState(
                                     () {
                                       age--;
+                                      ageController.text = age.toString();
                                     },
                                   );
                                 },
@@ -232,6 +296,7 @@ class _HomePageState extends State<HomePage> {
                                   setState(
                                     () {
                                       age++;
+                                      ageController.text = age.toString();
                                     },
                                   );
                                 },

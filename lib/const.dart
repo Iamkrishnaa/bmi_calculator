@@ -11,10 +11,25 @@ TextStyle kTitleStyle = const TextStyle(
   color: Color(0xff8d8e98),
 );
 
+InputDecoration fieldDecorator = InputDecoration(
+    contentPadding: const EdgeInsets.symmetric(
+        vertical: 0.0, horizontal: 0.0),
+    border: UnderlineInputBorder(
+        borderSide: BorderSide(color: kButtonColor)
+    ),
+    enabledBorder: UnderlineInputBorder(
+      borderSide: BorderSide(color: kButtonColor),
+    ),
+    focusedBorder: UnderlineInputBorder(
+      borderSide: BorderSide(color: kButtonColor),
+    ),
+    labelStyle: TextStyle()
+);
+
 /// Number style constant fontSize:50
 TextStyle kNumberStyle = const TextStyle(
   color: Colors.white,
-  fontSize: 50,
+  fontSize: 35,
   fontWeight: FontWeight.w900,
 );
 
